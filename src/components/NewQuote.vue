@@ -3,7 +3,7 @@
         <form>
             <div class="col-sm-8 col-sm-offset-2 col-xs-12 col-md-6 col-md-offset-3 form-group">
                 <label>Quote</label>
-                <textare class="form-control" row="3" v-model="quote"></textare>
+                <textarea class="form-control" row="3" v-model="quote"></textarea>
             </div>
             <div class="col-sm-8 col-sm-offset-2 col-xs-12 col-md-6 col-md-offset-3 form-group">
                 <button class="btn btn-primary" @click.prevent="createNew">Add Quote</button>
@@ -20,9 +20,10 @@
             };
         },
         methods: {
-            // emit a new quote
+            // emit a new quote, and send to parent component
             createNew() {
-
+                this.$emit('quoteAdded', this.quote);
+                this.quote='';      //reset this quote after sending it so that the form gets cleared.
             }
         }
     }
